@@ -67,7 +67,8 @@ def dstar():
         if score > 0:
             scores.append({ins_addr : score})
 
-#    print scores
+    for s in scores:
+        print s
 
 def main(argc, argv):
     global BINARY
