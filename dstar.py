@@ -63,8 +63,11 @@ def dstar():
     for ins_var in ins_vars.items():
         ins_addr = ins_var[0]
         ins_v = ins_var[1]
-        score = float(ins_v["Ncf"] * ins_v["Ncf"]) / (ins_v["Ncs"] + ins_v["Nuf"])
-        if score > 0:
+        try:
+            score = float(ins_v["Ncf"] * ins_v["Ncf"]) / (ins_v["Ncs"] + ins_v["Nuf"])
+        except ZeroDivisionError:
+            score = -1
+        if score != 0:
             scores.append({ins_addr : score})
 
     for s in scores:
