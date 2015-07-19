@@ -57,6 +57,7 @@ def dstar():
                 ins_vars[bbl]["Nuf"] += 1
             else:
                 ins_vars[bbl]["Nus"] += 1
+
     
     # calculate score
     scores = []
@@ -66,11 +67,12 @@ def dstar():
         try:
             score = float(ins_v["Ncf"] * ins_v["Ncf"]) / (ins_v["Ncs"] + ins_v["Nuf"])
         except ZeroDivisionError:
-            score = -1
+            score = 99999999
         if score != 0:
             scores.append({ins_addr : score})
 
-    for s in scores:
+        
+    for s in sorted(scores):
         print s
 
 def main(argc, argv):
