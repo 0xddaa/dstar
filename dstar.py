@@ -3,6 +3,7 @@
 import json
 import subprocess as sp
 import sys
+import argparse
 
 LOGPATH = "/home/dada/pin/CodeCoverage/log/"
 BINARY = "bof1"
@@ -76,9 +77,12 @@ def dstar():
         print s
 
 def main(argc, argv):
-    global BINARY
-    if argc == 2:
-        BINARY = argv[1]
+    parser = argparse.ArgumentParser(description='dstar algorithm implementation')
+    parser.add_argument("-d", "--directory", help="The directory of coverage result.", default="/home/dada/pin/CodeCoverage/log/", metavar = "Coverage Directory")
+    parser.add_argument("-b", "--binary", help="Target binary.", required = True, metavar = "Binary")
+    args = parser.parse_args()
+    BINARY = args.binary
+    LOGPATH = args.directory
 
     get_covs()
     get_all_bbls()
